@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Job Portal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="auth-container">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Login</button>
+    </form>
+
+    <p><button type="button" id="forgotBtn">Forgot your password?</button></p>
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+  </main>
+
+  <script>
+    const form = document.getElementById('loginForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch('api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem('token', result.token);
+          localStorage.setItem('accountType', result.accountType);
+          localStorage.setItem('userId', result.userId);
+          localStorage.setItem('userName', result.name);
+
+          alert('Login successful!');
+
+          if (result.accountType === 'student') {
+            window.location.href = '/stddashboard.html';
+          } else if (result.accountType === 'employer') {
+            window.location.href = '/empdashboard.html';
+          } else if (result.accountType === 'admin') {
+            window.location.href = '/addashboard.html';
+          } else {
+            alert("Unknown User Found!");
+            window.location.href = '/login.html';
+          }
+
+        } else {
+          alert(result.message || 'Login failed');
+          console.log(result.message);
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        alert('An error occurred during login');
+      }
+    });
+
+    // 🔑 Forgot Password Handler
+    document.getElementById('forgotBtn').addEventListener('click', async () => {
+      const email = prompt('Please enter your registered email to reset password:');
+      if (!email) return;
+
+      try {
+        const res = await fetch('api/auth/forgot-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+          alert('Reset link sent to your email.');
+        } else {
+          alert(result.message || 'Failed to send reset link.');
+        }
+      } catch (err) {
+        console.error('Reset error:', err);
+        alert('An error occurred while sending reset link.');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main>
+    <h1>Welcome to the Student Dashboard!</h1>
+    <p>This is a protected area after successful login.</p>
+    <a href="./profile.html">update your profile</a>
+    <button onclick="logout()">Logout</button>
+  </main>
+
+  <script>
+    function logout() {
+      localStorage.removeItem('token');
+      alert('Logged out successfully!');
+      window.location.href = '/login.html';
+    }
+  </script>
+</body>
+</html>

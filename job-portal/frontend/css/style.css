@@ -1,0 +1,138 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Auth forms */
+.auth-container,
+.profile-container,
+.jobs-container {
+  max-width: 450px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgb(0 0 0 / 0.1);
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #1f2937;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+form input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+form input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #2563eb;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+p {
+  text-align: center;
+  margin-top: 1rem;
+  color: #6b7280;
+}
+
+p a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Jobs */
+.job-search {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.job-search input {
+  width: 70%;
+  max-width: 350px;
+  display: inline-block;
+  border-radius: 4px 0 0 4px;
+  border-right: none;
+}
+
+.job-search button {
+  width: auto;
+  padding: 0.6rem 1rem;
+  border-radius: 0 4px 4px 0;
+  border-left: none;
+}
+
+.job-card {
+  background: #e0e7ff;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
+}
+
+.job-card h2 {
+  margin-bottom: 0.25rem;
+  color: #1e3a8a;
+}
+
+.job-card p {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.job-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.job-card a:hover {
+  text-decoration: underline;
+}
